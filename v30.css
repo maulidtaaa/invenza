@@ -1,0 +1,44 @@
+/* =========================================================
+   INVENZA V30 COSMIC SPLASH
+   V25 Solar System
+   V26 Asteroid Belt
+   V27 Constellation
+   V28 Interactive Particles
+   V29 Logo Formation
+   V30 Orbit paths form INVENZA
+   ========================================================= */
+.v30-splash-layer{position:absolute;inset:0;z-index:20;pointer-events:none;overflow:hidden;opacity:0;transition:opacity .8s ease}
+.v30-splash-layer.active{opacity:1}
+.v30-stars{position:absolute;inset:0;background-image:radial-gradient(circle at 18% 28%,rgba(104,213,255,.9) 0 1px,transparent 1.7px),radial-gradient(circle at 72% 18%,rgba(255,255,255,.8) 0 1px,transparent 1.8px),radial-gradient(circle at 82% 73%,rgba(111,242,255,.75) 0 1px,transparent 1.7px),radial-gradient(circle at 38% 78%,rgba(255,255,255,.65) 0 1px,transparent 1.6px);background-size:240px 220px,310px 270px,280px 250px,350px 300px;opacity:.55;animation:v30StarDrift 18s linear infinite}
+.v30-nebula{position:absolute;inset:-20%;background:radial-gradient(ellipse at 50% 48%,rgba(0,174,255,.13),transparent 42%),radial-gradient(ellipse at 20% 65%,rgba(128,70,255,.12),transparent 35%),radial-gradient(ellipse at 80% 30%,rgba(0,255,210,.08),transparent 32%);filter:blur(18px);animation:v30Nebula 12s ease-in-out infinite alternate}
+.v30-asteroid-belt{position:absolute;left:50%;top:50%;width:min(88vw,980px);height:min(88vw,980px);transform:translate(-50%,-50%);border:1px dashed rgba(105,213,255,.13);border-radius:50%;box-shadow:0 0 35px rgba(20,180,255,.05) inset}
+.v30-asteroid{position:absolute;width:var(--s,3px);height:var(--s,3px);left:50%;top:50%;border-radius:50%;background:rgba(177,212,226,.8);box-shadow:0 0 6px rgba(120,220,255,.35);transform:rotate(var(--a)) translateX(var(--r));animation:v30Asteroid var(--d,18s) linear infinite}
+.v30-constellation{position:absolute;inset:8% 8%;opacity:.28}
+.v30-constellation line{stroke:rgba(89,213,255,.45);stroke-width:1;stroke-dasharray:2 7}
+.v30-constellation circle{fill:#a7f2ff;filter:drop-shadow(0 0 4px rgba(94,225,255,.8))}
+.v30-particle-field{position:absolute;inset:0}
+.v30-particle{position:absolute;width:var(--s,2px);height:var(--s,2px);left:var(--x);top:var(--y);border-radius:50%;background:rgba(173,242,255,.9);box-shadow:0 0 8px rgba(80,210,255,.55);animation:v30Particle var(--d,5s) ease-in-out infinite var(--delay,0s)}
+.v30-orbit-echo{position:absolute;left:50%;top:50%;width:var(--w);height:var(--h);border:1px solid rgba(87,211,255,.18);border-radius:50%;transform:translate(-50%,-50%) rotate(var(--rot));transition:all 1.5s cubic-bezier(.2,.8,.2,1)}
+.v30-formation{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transform:scale(.82);transition:opacity 1.5s ease,transform 1.8s cubic-bezier(.2,.8,.2,1)}
+.v30-formation.active{opacity:1;transform:scale(1)}
+.v30-logo-svg{width:min(86vw,760px);height:auto;overflow:visible;filter:drop-shadow(0 0 9px rgba(0,224,255,.8)) drop-shadow(0 0 30px rgba(0,125,255,.32))}
+.v30-logo-word{fill:none;stroke:rgba(182,250,255,.96);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1800;stroke-dashoffset:1800;animation:v30LogoDraw 4.2s cubic-bezier(.2,.7,.2,1) forwards}
+.v30-logo-word-fill{fill:rgba(90,222,255,.055);stroke:none;opacity:0;animation:v30LogoFill 1.2s ease 3.1s forwards}
+.v30-logo-ring{fill:none;stroke:rgba(0,224,255,.22);stroke-width:1;stroke-dasharray:3 9;transform-origin:center;animation:v30Ring 12s linear infinite}
+.v30-formation-label{position:absolute;bottom:13%;font:600 10px/1.2 system-ui,sans-serif;letter-spacing:.34em;color:rgba(184,238,255,.68);text-transform:uppercase}
+.v30-status{position:absolute;left:50%;bottom:7%;transform:translateX(-50%);font:600 9px/1 system-ui,sans-serif;letter-spacing:.2em;color:rgba(164,229,255,.7);white-space:nowrap;text-transform:uppercase}
+.v30-splash-active .solar-system{animation:v30SolarFinale 7.8s cubic-bezier(.22,.61,.36,1) forwards}
+.v30-splash-active .solar-connector{opacity:.45!important;transition:opacity 1s ease}
+.v30-splash-active .solar-planet-labels{opacity:.35;transition:opacity 1.2s ease}
+.v30-splash-active .solar-loader-bottom span:last-child{animation:v30Ready 1.2s ease infinite}
+@keyframes v30StarDrift{to{transform:translate3d(24px,-18px,0)}}
+@keyframes v30Nebula{to{transform:scale(1.06) rotate(3deg);opacity:.8}}
+@keyframes v30Asteroid{from{transform:rotate(var(--a)) translateX(var(--r)) rotate(calc(var(--a) * -1))}to{transform:rotate(calc(var(--a) + 360deg)) translateX(var(--r)) rotate(calc((var(--a) + 360deg) * -1))}}
+@keyframes v30Particle{0%,100%{opacity:.2;transform:translate3d(0,0,0) scale(.75)}50%{opacity:1;transform:translate3d(var(--dx),var(--dy),0) scale(1.45)}}
+@keyframes v30LogoDraw{to{stroke-dashoffset:0}}
+@keyframes v30LogoFill{to{opacity:1}}
+@keyframes v30Ring{to{transform:rotate(360deg)}}
+@keyframes v30SolarFinale{0%{transform:scale(1)}68%{transform:scale(.96)}100%{transform:scale(.78);opacity:.14;filter:blur(1px)}}
+@keyframes v30Ready{50%{opacity:.35}}
+@media(max-width:700px){.v30-asteroid-belt{width:125vw;height:125vw}.v30-logo-svg{width:94vw}.v30-formation-label{bottom:15%;font-size:8px}.v30-status{font-size:8px;bottom:8%}}
+@media(prefers-reduced-motion:reduce){.v30-stars,.v30-nebula,.v30-asteroid,.v30-particle,.v30-logo-ring{animation:none}.v30-logo-word{animation:none;stroke-dashoffset:0}.v30-logo-word-fill{animation:none;opacity:1}.v30-splash-active .solar-system{animation:none;opacity:.2}}

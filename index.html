@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta id="themeColorMeta" name="theme-color" content="#071326">
+  <meta name="description" content="INVENZA, sistem inventaris barang berbasis PWA untuk proyek STS RPL SMK Krian 1 Sidoarjo.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="INVENZA">
+  <title>INVENZA | Sistem Inventaris Barang</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./v20.css">
+  <link rel="stylesheet" href="./v25.css">
+  <link rel="stylesheet" href="./v26.css">
+  <link rel="stylesheet" href="./v30.css">
+  <link rel="stylesheet" href="./v31.css">
+  <link rel="icon" href="./icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+</head>
+<body data-theme="night">
+  <div id="cursorOrb" class="cursor-orb" aria-hidden="true"><span></span></div>
+  <div id="starfield" class="starfield" aria-hidden="true"></div>
+
+  <section id="splashScreen" class="splash-screen v20-solar-splash" aria-label="Memuat INVENZA V31">
+    <div class="solar-nebula" aria-hidden="true"></div>
+    <div class="solar-stars" aria-hidden="true"></div>
+    <div class="solar-title">
+      <span class="solar-kicker">INVENZA V31 • RPL • 2026/2027</span>
+      <h1>INVENZA</h1>
+      <p>Inventory Intelligence System</p>
+      <span class="solar-status">Menyiapkan orbit data...</span>
+    </div>
+
+    <div class="solar-system" aria-hidden="true">
+      <div class="solar-glow"></div>
+      <div class="sun-core"><span></span><b></b></div>
+
+      <div class="orbit orbit-1"><span class="planet planet-mercury" data-planet="Merkurius"></span></div>
+      <div class="orbit orbit-2"><span class="planet planet-venus" data-planet="Venus"></span></div>
+      <div class="orbit orbit-3"><span class="planet planet-earth" data-planet="Bumi"><i></i></span></div>
+      <div class="orbit orbit-4"><span class="planet planet-mars" data-planet="Mars"></span></div>
+      <div class="orbit orbit-5"><span class="planet planet-jupiter" data-planet="Jupiter"><i></i></span></div>
+      <div class="orbit orbit-6"><span class="planet planet-saturn" data-planet="Saturn"><i></i></span></div>
+      <div class="orbit orbit-7"><span class="planet planet-uranus" data-planet="Uranus"></span></div>
+      <div class="orbit orbit-8"><span class="planet planet-neptune" data-planet="Neptunus"></span></div>
+
+      <div class="solar-connector c1"></div><div class="solar-connector c2"></div>
+      <div class="solar-connector c3"></div><div class="solar-connector c4"></div>
+      <div class="solar-connector c5"></div><div class="solar-connector c6"></div>
+      <div class="solar-connector c7"></div><div class="solar-connector c8"></div>
+    </div>
+
+    <div class="solar-planet-labels" aria-hidden="true">
+      <span>☿ Merkurius</span><span>♀ Venus</span><span>⊕ Bumi</span><span>♂ Mars</span>
+      <span>♃ Jupiter</span><span>♄ Saturnus</span><span>♅ Uranus</span><span>♆ Neptunus</span>
+    </div>
+
+    <div class="solar-loader">
+      <div class="solar-loader-top"><span>INITIALIZING V31</span><strong id="splashProgressText">0%</strong></div>
+      <div class="solar-progress"><span id="splashProgressBar"></span></div>
+      <div class="solar-loader-bottom"><span>8 PLANETARY ORBITS • COSMIC IDENTITY</span><span>LOCAL DATA CORE</span><span>READY</span></div>
+    </div>
+  </section>
+
+  <section id="authScreen" class="auth-screen hidden" aria-label="Autentikasi INVENZA">
+    <div class="auth-cosmos" aria-hidden="true"></div>
+    <div class="auth-panel">
+      <div class="auth-brand">
+        <img src="./icon-192.png" alt="Logo INVENZA">
+        <div><strong>INVENZA</strong><span>Inventory Management System</span></div>
+      </div>
+      <div class="auth-copy">
+        <span class="eyebrow">RUANG DATA PERSONAL</span>
+        <h1 id="authTitle">Masuk ke ruang kerja Anda.</h1>
+        <p id="authSubtitle">Kelola inventaris, pantau aset, dan simpan preferensi Anda dalam satu aplikasi.</p>
+      </div>
+
+      <div class="auth-tabs" role="tablist">
+        <button type="button" class="auth-tab active" data-auth-mode="login">Masuk</button>
+        <button type="button" class="auth-tab" data-auth-mode="register">Daftar</button>
+      </div>
+
+      <form id="loginForm" class="auth-form">
+        <label class="form-field"><span>Email</span><input id="loginEmail" type="email" autocomplete="email" placeholder="nama@email.com" required></label>
+        <label class="form-field"><span>Password</span><div class="password-wrap"><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Minimal 6 karakter" required><button type="button" class="plain-icon" data-toggle-password="loginPassword" aria-label="Tampilkan password">◉</button></div></label>
+        <label class="remember-row"><input id="rememberMe" type="checkbox" checked><span>Tetap masuk di perangkat ini</span></label>
+        <button type="submit" class="primary-btn auth-submit">Masuk ke INVENZA</button>
+      </form>
+
+      <form id="registerForm" class="auth-form hidden">
+        <div class="two-col">
+          <label class="form-field"><span>Nama</span><input id="registerName" type="text" autocomplete="name" placeholder="Nama lengkap" required></label>
+          <label class="form-field"><span>Role</span><select id="registerRole"><option>Admin</option><option>Pengelola</option><option>Operator</option></select></label>
+        </div>
+        <label class="form-field"><span>Email</span><input id="registerEmail" type="email" autocomplete="email" placeholder="nama@email.com" required></label>
+        <label class="form-field"><span>Password</span><div class="password-wrap"><input id="registerPassword" type="password" autocomplete="new-password" placeholder="Minimal 6 karakter" required><button type="button" class="plain-icon" data-toggle-password="registerPassword" aria-label="Tampilkan password">◉</button></div></label>
+        <label class="form-field"><span>Konfirmasi password</span><input id="registerPassword2" type="password" autocomplete="new-password" placeholder="Ulangi password" required></label>
+        <button type="submit" class="primary-btn auth-submit">Buat akun</button>
+      </form>
+
+      <div class="demo-box">
+        <div><span class="demo-icon">D</span><div><strong>Masuk sebagai akun demo</strong><small>Tanpa membuat akun. Data contoh sudah tersedia.</small></div></div>
+        <button id="demoLoginBtn" type="button" class="secondary-btn">Gunakan Demo</button>
+      </div>
+      <div class="auth-footer"><span>Mode tersimpan otomatis</span><button id="authThemeBtn" type="button" class="theme-toggle compact" aria-label="Ganti tema">☀︎</button></div>
+    </div>
+  </section>
+
+  <div id="appShell" class="app-shell hidden">
+    <header class="top-header">
+      <div class="brand-lockup" data-section-target="dashboardSection" role="button" tabindex="0">
+        <div class="brand-logo"><img src="./icon-192.png" alt="Logo INVENZA"></div>
+        <div class="brand-text"><strong>INVENZA</strong><span>Sistem Inventaris Barang</span></div>
+      </div>
+      <div class="global-search"><span class="search-symbol">⌕</span><input id="globalSearch" type="search" placeholder="Cari barang, kode, kategori, supplier..."><kbd>Ctrl K</kbd></div>
+      <div class="header-tools">
+        <span id="networkStatus" class="status-pill"><i></i><span>Online</span></span>
+        <button id="installBtn" class="header-btn install-btn hidden" type="button">Install</button>
+        <button id="notificationBtn" class="icon-btn" type="button" title="Pusat notifikasi">◌</button>
+        <button id="themeBtn" class="theme-toggle" type="button" aria-label="Ganti tema" title="Ganti tema"><span class="theme-sun">☼</span><span class="theme-moon">☾</span></button>
+        <button id="profileQuickBtn" class="profile-mini" type="button" title="Buka profil"><span id="profileMiniAvatar" class="avatar-token">I</span><span id="profileMiniName">Pengguna</span></button>
+      </div>
+    </header>
+
+    <nav id="desktopNav" class="desktop-nav" aria-label="Navigasi utama">
+      <button type="button" class="nav-item active" data-section="dashboardSection"><span class="nav-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1z"/></svg></span><span>Dashboard</span></button>
+      <button type="button" class="nav-item" data-section="inventorySection"><span class="nav-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 9h8M8 13h8M8 16h5"/></svg></span><span>Data Barang</span></button>
+      <button type="button" class="nav-item" data-section="analyticsSection"><span class="nav-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9M12 19V5M19 19v-7"/></svg></span><span>Analitik</span></button>
+      <button type="button" class="nav-item" data-section="backupSection"><span class="nav-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h9l5 5v9H5z"/><path d="M14 5v5h5M12 13v5M9.5 15.5 12 18l2.5-2.5"/></svg></span><span>Data &amp; Backup</span></button>
+      <button type="button" class="nav-item" data-section="profileSection"><span class="nav-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M5.5 20c.7-3.2 3-5 6.5-5s5.8 1.8 6.5 5"/></svg></span><span>Profil</span></button>
+    </nav>
+
+    <aside id="mobileDrawer" class="mobile-drawer">
+      <div class="drawer-top"><div class="drawer-brand"><img src="./icon-192.png" alt="Logo INVENZA"><span>INVENZA</span></div><button id="drawerCloseBtn" class="icon-btn" type="button">×</button></div>
+      <div class="drawer-user"><span id="drawerAvatar" class="avatar-token large">I</span><div><strong id="drawerUserName">Pengguna</strong><small id="drawerUserRole">Admin</small></div></div>
+      <div class="drawer-nav">
+        <button type="button" class="nav-item active" data-section="dashboardSection"><span class="nav-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1z"/></svg></span><span>Dashboard</span></button>
+        <button type="button" class="nav-item" data-section="inventorySection"><span class="nav-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 9h8M8 13h8M8 16h5"/></svg></span><span>Data Barang</span></button>
+        <button type="button" class="nav-item" data-section="analyticsSection"><span class="nav-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9M12 19V5M19 19v-7"/></svg></span><span>Analitik</span></button>
+        <button type="button" class="nav-item" data-section="backupSection"><span class="nav-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h9l5 5v9H5z"/><path d="M14 5v5h5M12 13v5M9.5 15.5 12 18l2.5-2.5"/></svg></span><span>Data &amp; Backup</span></button>
+        <button type="button" class="nav-item" data-section="profileSection"><span class="nav-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M5.5 20c.7-3.2 3-5 6.5-5s5.8 1.8 6.5 5"/></svg></span><span>Profil</span></button>
+      </div>
+      <div class="drawer-footer"><span>Proyek STS Invenza</span><button id="logoutBtnMobile" class="danger-soft-btn" type="button">Keluar</button></div>
+    </aside>
+    <div id="drawerOverlay" class="drawer-overlay hidden"></div>
+    <button id="mobileMenuBtn" class="mobile-menu-fab" type="button" aria-label="Buka menu">☰</button>
+
+    <main id="mainContent" class="main-content">
+      <section id="dashboardSection" class="page-section active-section">
+        <div class="hero earth-night-hero">
+          <div class="hero-art" aria-hidden="true"><div class="orbit-planet p1"></div><div class="orbit-planet p2"></div><div class="orbit-planet p3"></div></div>
+          <div class="hero-copy"><span class="eyebrow">RUANG KERJA INVENZA</span><h1 id="welcomeTitle">Halo, Pengguna.</h1><p>Data inventaris Anda bergerak dari catatan biasa menjadi sistem yang terukur, mudah dibaca, dan siap ditindaklanjuti.</p><div class="hero-chips"><span>● Realtime lokal</span><span>● PWA siap dipasang</span><span>● CSV & JSON</span></div></div>
+          <button id="heroAddBtn" class="primary-btn glow-btn" type="button">＋ Tambah Barang</button>
+        </div>
+
+        <div class="stats-grid five">
+          <article class="metric-card"><div class="metric-icon c-cyan">▤</div><div><span>Total Barang</span><strong id="totalItemTypes">0</strong><small>entri inventaris</small></div><span class="metric-badge" id="metricItemTrend">Aktif</span></article>
+          <article class="metric-card"><div class="metric-icon c-green">◈</div><div><span>Total Stok</span><strong id="totalStock">0</strong><small>unit tersedia</small></div></article>
+          <article class="metric-card"><div class="metric-icon c-violet">◌</div><div><span>Kategori</span><strong id="totalCategories">0</strong><small>jenis barang</small></div></article>
+          <article class="metric-card"><div class="metric-icon c-gold">Rp</div><div><span>Nilai Aset</span><strong id="totalAssetValue">Rp0</strong><small>nilai stok</small></div></article>
+          <article class="metric-card"><div class="metric-icon c-pink">!</div><div><span>Stok Menipis</span><strong id="lowStockCount">0</strong><small id="lowStockText">butuh perhatian</small></div></article>
+        </div>
+
+        <div class="feature-grid dashboard-feature-grid">
+          <section class="surface-card recent-surface"><div class="section-head"><div><span class="eyebrow">GERAK TERBARU</span><h2>Barang yang baru bergerak</h2></div><button type="button" class="text-btn" data-section-target="inventorySection">Semua data →</button></div><div id="recentList" class="recent-stack"></div></section>
+          <section class="surface-card insight-surface"><div class="section-head"><div><span class="eyebrow">ORBIT INSIGHT</span><h2>Fokus hari ini</h2></div><span class="live-dot">LIVE</span></div><div id="focusInsight" class="insight-card"></div><div class="mini-progress"><span id="goodRatioBar"></span></div><div class="mini-progress-meta"><span id="goodRatioText">0% kondisi baik</span><span>target 100%</span></div></section>
+        </div>
+
+        <div class="feature-grid three dashboard-lower">
+          <section class="surface-card"><div class="section-head"><div><span class="eyebrow">KONDISI</span><h2>Komposisi stok</h2></div></div><div class="condition-orbit"><div id="conditionDonut" class="donut-chart"><div><strong id="conditionTotal">0</strong><small>unit</small></div></div><div id="conditionLegend" class="stack-legend"></div></div></section>
+          <section class="surface-card"><div class="section-head"><div><span class="eyebrow">KATEGORI</span><h2>Distribusi barang</h2></div></div><div id="categoryBars" class="bar-list"></div></section>
+          <section class="surface-card quick-actions"><div class="section-head"><div><span class="eyebrow">AKSI CEPAT</span><h2>Satu sentuhan, satu tindakan</h2></div></div><button class="quick-card" type="button" data-action="add"><span>＋</span><div><strong>Tambah barang</strong><small>Buat entri inventaris baru.</small></div></button><button class="quick-card" type="button" data-action="csv"><span>⇩</span><div><strong>Unduh CSV</strong><small>Buka di Excel atau Sheets.</small></div></button><button class="quick-card" type="button" data-action="print"><span>▧</span><div><strong>Cetak laporan</strong><small>Buat laporan ringkas inventaris.</small></div></button></section>
+        </div>
+      </section>
+
+      <section id="inventorySection" class="page-section">
+        <div class="section-title-row"><div><span class="eyebrow">DATA BARANG</span><h1>Ruang Inventaris</h1><p>Kelola seluruh data barang, detail, gambar, stok, dan kondisi dari satu ruang kerja.</p></div><div class="title-actions"><button id="downloadCsvTop" class="secondary-btn" type="button">⇩ Download CSV</button><button id="inventoryAddBtn" class="primary-btn glow-btn" type="button">＋ Tambah Barang</button></div></div>
+        <div class="toolbar-card"><div class="toolbar-search"><span>⌕</span><input id="inventorySearch" type="search" placeholder="Cari nama, kode, supplier, ruangan..."></div><select id="categoryFilter"><option value="">Semua kategori</option></select><select id="conditionFilter"><option value="">Semua kondisi</option><option>Baik</option><option>Rusak Ringan</option><option>Rusak Berat</option></select><select id="stockFilter"><option value="">Semua stok</option><option value="low">Stok menipis</option><option value="empty">Stok habis</option></select><select id="sortFilter"><option value="updated-desc">Terbaru diperbarui</option><option value="name-asc">Nama A-Z</option><option value="stock-desc">Stok terbesar</option><option value="value-desc">Nilai aset terbesar</option></select><button id="resetFilterBtn" class="icon-btn" type="button" title="Reset filter">↺</button></div>
+        <div class="inventory-summary"><span id="inventoryCountLabel">0 barang</span><span id="inventoryFilterHint">Menampilkan semua data</span></div>
+        <div id="inventoryGrid" class="inventory-grid"></div>
+        <div id="inventoryEmpty" class="empty-state hidden"><div class="empty-planet">I</div><h3>Belum ada barang di ruang ini.</h3><p>Tambahkan data pertama untuk mulai membangun inventaris Anda.</p><button class="primary-btn" id="emptyAddBtn" type="button">Tambah Barang</button></div>
+      </section>
+
+      <section id="analyticsSection" class="page-section">
+        <div class="section-title-row"><div><span class="eyebrow">ANALITIK</span><h1>Membaca inventaris dari berbagai sudut.</h1><p>Gunakan data stok, kondisi, kategori, dan aset untuk melihat pola yang tidak terlihat dari tabel saja.</p></div><div class="title-actions"><button id="refreshAnalyticsBtn" class="secondary-btn" type="button">↻ Segarkan</button></div></div>
+        <div class="stats-grid four"><article class="metric-card compact"><div class="metric-icon c-cyan">Σ</div><div><span>Total Unit</span><strong id="analyticsStock">0</strong></div></article><article class="metric-card compact"><div class="metric-icon c-gold">Rp</div><div><span>Total Nilai Aset</span><strong id="analyticsAsset">Rp0</strong></div></article><article class="metric-card compact"><div class="metric-icon c-pink">!</div><div><span>Barang Perlu Cek</span><strong id="analyticsAttention">0</strong></div></article><article class="metric-card compact"><div class="metric-icon c-violet">◎</div><div><span>Supplier Aktif</span><strong id="analyticsSuppliers">0</strong></div></article></div>
+        <div class="analytics-grid">
+          <section class="surface-card chart-card"><div class="section-head"><div><span class="eyebrow">KATEGORI</span><h2>Jumlah barang per kategori</h2></div></div><div id="analyticsCategoryBars" class="large-bar-list"></div></section>
+          <section class="surface-card chart-card"><div class="section-head"><div><span class="eyebrow">KONDISI</span><h2>Komposisi unit</h2></div></div><div class="condition-orbit large"><div id="analyticsConditionDonut" class="donut-chart"><div><strong id="analyticsConditionTotal">0</strong><small>unit</small></div></div><div id="analyticsConditionLegend" class="stack-legend"></div></div></section>
+          <section class="surface-card chart-card"><div class="section-head"><div><span class="eyebrow">RUANGAN</span><h2>Sebaran stok</h2></div></div><div id="roomBars" class="large-bar-list"></div></section>
+          <section class="surface-card chart-card"><div class="section-head"><div><span class="eyebrow">SUPPLIER</span><h2>Supplier berdasarkan jumlah item</h2></div></div><div id="supplierBars" class="large-bar-list"></div></section>
+        </div>
+        <section class="surface-card attention-card"><div class="section-head"><div><span class="eyebrow">PERLU PERHATIAN</span><h2>Stok rendah dan barang rusak</h2></div><span class="live-dot">MONITOR</span></div><div id="attentionList" class="attention-grid"></div></section>
+      </section>
+
+      <section id="backupSection" class="page-section">
+        <div class="section-title-row"><div><span class="eyebrow">DATA & BACKUP</span><h1>Jaga data tetap dalam kendali Anda.</h1><p>Unduh, impor, cadangkan, pulihkan, atau hubungkan INVENZA dengan Google Spreadsheet.</p></div></div>
+        <div class="backup-grid">
+          <section class="surface-card backup-card"><div class="section-head"><div><span class="eyebrow">EXPORT</span><h2>Unduh data</h2></div></div><p>Simpan inventaris ke format yang mudah dibuka kembali.</p><div class="backup-actions"><button id="downloadCsvBtn" class="primary-btn" type="button">⇩ Download CSV</button><button id="exportJsonBtn" class="secondary-btn" type="button">⇩ Export JSON</button><button id="printReportBtn" class="secondary-btn" type="button">▧ Cetak Laporan</button></div></section>
+          <section class="surface-card backup-card"><div class="section-head"><div><span class="eyebrow">IMPORT</span><h2>Pulihkan data</h2></div></div><p>Impor file JSON hasil backup tanpa menghapus data lain secara otomatis.</p><input id="importFile" type="file" accept="application/json,.json" hidden><button id="importJsonBtn" class="primary-btn" type="button">⇧ Import JSON</button><div class="import-hint" id="importHint">Belum ada file dipilih.</div></section>
+          <section class="surface-card backup-card"><div class="section-head"><div><span class="eyebrow">BACKUP LOKAL</span><h2>Salinan perangkat</h2></div></div><p>Simpan snapshot inventaris di perangkat ini untuk pemulihan cepat.</p><div class="backup-actions"><button id="createBackupBtn" class="primary-btn" type="button">＋ Backup Sekarang</button><button id="restoreBackupBtn" class="secondary-btn" type="button">↥ Pilihkan Backup</button></div><input id="restoreBackupFile" type="file" accept="application/json,.json" hidden><div id="backupInfo" class="backup-info">Belum ada backup lokal.</div></section>
+          <section class="surface-card backup-card span-2"><div class="section-head"><div><span class="eyebrow">GOOGLE SPREADSHEET</span><h2>Sinkronisasi database</h2></div><span id="databaseBadge" class="live-dot">LOKAL</span></div><div class="form-field"><span>URL Web App Google Apps Script</span><input id="apiUrlInput" type="url" placeholder="https://script.google.com/macros/s/.../exec"></div><div class="backup-actions"><button id="saveApiUrlBtn" class="primary-btn" type="button">Simpan URL</button><button id="testApiBtn" class="secondary-btn" type="button">Tes Koneksi</button><button id="syncApiBtn" class="secondary-btn" type="button">↻ Sinkronisasi</button></div><div id="apiStatus" class="api-status">Mode lokal aktif. Hubungkan URL API untuk sinkronisasi online.</div></section>
+          <section class="surface-card backup-card danger-zone"><div class="section-head"><div><span class="eyebrow">MANAJEMEN DATA</span><h2>Area pemulihan</h2></div></div><p>Gunakan hanya saat Anda benar-benar ingin mengganti atau mengosongkan data lokal.</p><div class="backup-actions"><button id="clearAllBtn" class="danger-btn" type="button">Hapus Semua Data</button><button id="seedDemoDataBtn" class="secondary-btn" type="button">Isi Data Contoh</button></div></section>
+        </div>
+      </section>
+
+      <section id="profileSection" class="page-section">
+        <div class="section-title-row"><div><span class="eyebrow">PROFILE ORBIT</span><h1>Ruang profil Anda.</h1><p>Edit identitas, avatar, preferensi, dan sesi akun tanpa meninggalkan INVENZA.</p></div><button id="logoutBtn" class="danger-btn" type="button">Keluar</button></div>
+        <div class="profile-grid">
+          <section class="surface-card profile-identity"><div class="profile-cover"></div><div class="profile-main"><div id="profileAvatarLarge" class="avatar-display">I</div><div><h2 id="profileDisplayName">Pengguna INVENZA</h2><span id="profileDisplayRole" class="profile-role">Admin</span><p id="profileDisplayEmail">email@invenza.local</p></div></div><div class="profile-meta-list"><div><span>Aktif sejak</span><strong id="profileSince">Hari ini</strong></div><div><span>Status</span><strong class="status-text">Aktif</strong></div><div><span>Data lokal</span><strong id="profileDataCount">0 entri</strong></div></div></section>
+          <section class="surface-card profile-editor"><div class="section-head"><div><span class="eyebrow">IDENTITAS</span><h2>Edit profil</h2></div></div><form id="profileForm"><div class="two-col"><label class="form-field"><span>Nama</span><input id="profileNameInput" type="text" required></label><label class="form-field"><span>Role</span><select id="profileRoleInput"><option>Admin</option><option>Pengelola</option><option>Operator</option></select></label></div><div class="two-col"><label class="form-field"><span>Email</span><input id="profileEmailInput" type="email" readonly></label><label class="form-field"><span>No. Telepon</span><input id="profilePhoneInput" type="tel" placeholder="08xxxxxxxxxx"></label></div><label class="form-field"><span>Bio</span><textarea id="profileBioInput" rows="4" placeholder="Tuliskan keterangan singkat..."></textarea></label><button type="submit" class="primary-btn">Simpan profil</button></form></section>
+          <section class="surface-card avatar-card"><div class="section-head"><div><span class="eyebrow">AVATAR</span><h2>Pilih gaya identitas</h2></div></div><p>Avatar bawaan dibuat dengan bentuk ilustrasi vektor. Anda juga bisa memakai foto dari perangkat.</p><div id="avatarChoiceGrid" class="avatar-choice-grid"></div><input id="profilePhotoInput" type="file" accept="image/*" hidden><button id="uploadProfilePhotoBtn" class="secondary-btn" type="button">＋ Tambah Foto dari Perangkat</button><button id="removeProfilePhotoBtn" class="text-btn hidden" type="button">Hapus foto profil</button></section>
+          <section class="surface-card preferences-card"><div class="section-head"><div><span class="eyebrow">PREFERENSI</span><h2>Perilaku INVENZA</h2></div></div><label class="setting-row"><div><strong>Mode otomatis</strong><span>Ikuti tema perangkat saat membuka aplikasi.</span></div><input id="autoThemeToggle" type="checkbox"></label><label class="setting-row"><div><strong>Notifikasi stok</strong><span>Tampilkan pengingat di dalam aplikasi.</span></div><input id="stockNoticeToggle" type="checkbox" checked></label><label class="setting-row"><div><strong>Efek gerak</strong><span>Aktifkan animasi orbit dan glow tambahan.</span></div><input id="motionToggle" type="checkbox" checked></label></section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer v15-footer">
+      <div class="footer-orbit footer-orbit-v15" aria-hidden="true"><span></span><i></i><b></b></div>
+      <div class="footer-inner-v15">
+        <section class="footer-brand-block-v15">
+          <div class="footer-brand-v15">
+            <span class="footer-logo-wrap-v15"><img src="./icon-192.png" alt="Logo INVENZA"></span>
+            <span><strong>INVENZA</strong><small>Sistem Inventaris Barang</small></span>
+          </div>
+          <p>INVENZA adalah ruang kerja inventaris berbasis PWA yang menyatukan pencatatan barang, pemantauan stok, nilai aset, analitik, backup, dan sinkronisasi data dalam satu pengalaman.</p>
+          <div class="footer-project-badge-v15"><span>INVENZA V31 • STS 2026/2027</span><strong>Orbital Command OS</strong></div>
+        </section>
+
+        <section class="footer-column-v15">
+          <span class="footer-kicker">NAVIGASI</span>
+          <button type="button" data-section-target="dashboardSection">Dashboard</button>
+          <button type="button" data-section-target="inventorySection">Data Barang</button>
+          <button type="button" data-section-target="analyticsSection">Analitik</button>
+          <button type="button" data-section-target="backupSection">Data &amp; Backup</button>
+          <button type="button" data-section-target="profileSection">Profil Pengguna</button>
+        </section>
+
+        <section class="footer-column-v15 footer-maker-v15">
+          <span class="footer-kicker">TENTANG PEMBUAT</span>
+          <h3>Kelompok 4 • RPL</h3>
+          <p>INVENZA dikembangkan sebagai proyek STS oleh siswa Rekayasa Perangkat Lunak untuk menerapkan konsep pengelolaan data dan CRUD pada aplikasi perangkat bergerak berbasis PWA.</p>
+          <span class="maker-line">SMK Krian 1 Sidoarjo</span>
+          <span class="maker-line">Tahun Pelajaran 2026/2027</span>
+        </section>
+
+        <section class="footer-column-v15">
+          <span class="footer-kicker">SISTEM</span>
+          <span class="footer-info-row"><strong>PWA</strong><small>Install di desktop &amp; mobile</small></span>
+          <span class="footer-info-row"><strong>CRUD</strong><small>Create, Read, Update, Delete</small></span>
+          <span class="footer-info-row"><strong>DATA</strong><small>CSV, JSON, backup lokal</small></span>
+          <span class="footer-info-row"><strong>DATABASE</strong><small>Google Spreadsheet via Apps Script</small></span>
+          <button type="button" class="footer-install-btn" data-action="install">Pasang INVENZA</button>
+        </section>
+      </div>
+
+      <div class="footer-bottom-v15">
+        <div><strong>© 2026 INVENZA</strong><span>Proyek STS • Kelompok 4 • RPL • SMK Krian 1 Sidoarjo</span></div>
+        <div class="footer-bottom-links"><button type="button" data-section-target="dashboardSection">Beranda</button><span>•</span><button type="button" data-section-target="profileSection">Profil</button><span>•</span><button type="button" data-section-target="backupSection">Data &amp; Backup</button><span>•</span><button type="button" data-section-target="dashboardSection">Kembali ke atas</button></div>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+  <div id="modalRoot" class="modal-root hidden"></div>
+  <div id="commandPalette" class="command-palette hidden" role="dialog" aria-modal="true"><div class="command-backdrop" data-close-command></div><div class="command-box"><div class="command-input-row"><span>⌕</span><input id="commandInput" type="search" placeholder="Ketik perintah..."><kbd>ESC</kbd></div><div id="commandList" class="command-list"></div></div></div>
+
+  <script src="./app.js" defer></script>
+  <script src="./v20.js" defer></script>
+  <script src="./v25.js" defer></script>
+  <script src="./v26.js" defer></script>
+  <script src="./v30.js" defer></script>
+  <script src="./v31.js" defer></script>
+</body>
+</html>

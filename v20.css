@@ -1,0 +1,177 @@
+
+/* =========================================================
+   INVENZA V20 • VISUAL + RESPONSIVE UPGRADE
+   ========================================================= */
+
+/* Solar splash. No card. Full viewport planetary composition. */
+.v20-solar-splash{
+  position:fixed; inset:0; z-index:9999; overflow:hidden;
+  display:grid; place-items:center;
+  background:
+    radial-gradient(circle at 50% 50%,rgba(39,74,155,.18),transparent 18%),
+    radial-gradient(circle at 15% 25%,rgba(75,108,255,.16),transparent 26%),
+    radial-gradient(circle at 85% 72%,rgba(180,75,255,.13),transparent 28%),
+    #02040b;
+  isolation:isolate;
+}
+.v20-solar-splash.fade-out{opacity:0;transform:scale(1.035);transition:opacity .8s ease,transform .8s ease}
+.solar-nebula,.solar-stars{position:absolute;inset:-20%;pointer-events:none}
+.solar-nebula{
+  background:
+    radial-gradient(ellipse at 30% 55%,rgba(0,207,255,.11),transparent 28%),
+    radial-gradient(ellipse at 70% 45%,rgba(150,75,255,.13),transparent 30%),
+    radial-gradient(ellipse at 50% 20%,rgba(255,88,183,.07),transparent 24%);
+  filter:blur(35px);animation:nebulaDrift 16s ease-in-out infinite alternate;
+}
+.solar-stars{
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.95) 0 1px,transparent 1.5px),
+    radial-gradient(circle,rgba(112,201,255,.75) 0 1px,transparent 1.5px);
+  background-size:83px 83px,137px 137px;
+  background-position:12px 20px,55px 80px;opacity:.38;animation:starDrift 28s linear infinite;
+}
+@keyframes nebulaDrift{to{transform:scale(1.08) rotate(3deg)}}
+@keyframes starDrift{to{transform:translate3d(90px,55px,0)}}
+
+.solar-title{
+  position:absolute;top:clamp(26px,6vh,70px);left:0;right:0;text-align:center;z-index:4;
+  pointer-events:none;text-shadow:0 0 30px rgba(75,183,255,.25);
+}
+.solar-kicker{font-size:10px;letter-spacing:.28em;color:#8fb6e9;font-weight:800}
+.solar-title h1{
+  margin:8px 0 2px;font-size:clamp(30px,5vw,62px);letter-spacing:.16em;
+  color:#f5fbff;font-weight:900;
+}
+.solar-title p{margin:0;color:#78d9ff;font-size:clamp(10px,1.4vw,14px);letter-spacing:.3em;text-transform:uppercase}
+.solar-status{display:block;margin-top:10px;color:#7389a9;font-size:10px;letter-spacing:.16em}
+
+.solar-system{
+  position:relative;width:min(76vw,700px);height:min(76vw,700px);
+  min-width:290px;min-height:290px;max-width:700px;max-height:700px;
+  z-index:2;filter:drop-shadow(0 0 30px rgba(49,144,255,.12));
+}
+.solar-glow{position:absolute;inset:30%;border-radius:50%;background:radial-gradient(circle,rgba(255,179,45,.2),transparent 68%);filter:blur(15px)}
+.sun-core{
+  position:absolute;left:50%;top:50%;width:clamp(42px,7vw,76px);height:clamp(42px,7vw,76px);
+  transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#fff7b0 0 7%,#ffd45b 18%,#ff9d2f 48%,#ff542c 72%,#d72935 100%);
+  box-shadow:0 0 20px #ffb12b,0 0 55px rgba(255,146,43,.7),0 0 110px rgba(255,91,43,.3);
+  animation:sunPulse 2.4s ease-in-out infinite alternate;
+}
+.sun-core:before,.sun-core:after{content:"";position:absolute;inset:-17%;border:1px solid rgba(255,194,79,.24);border-radius:50%;animation:sunHalo 3s linear infinite}
+.sun-core:after{inset:-34%;border-color:rgba(255,133,45,.12);animation-direction:reverse}
+.sun-core span{position:absolute;inset:22%;border-radius:50%;background:rgba(255,246,171,.42);filter:blur(2px)}
+.sun-core b{position:absolute;width:8px;height:8px;border-radius:50%;background:#fff2a6;top:22%;left:30%;box-shadow:20px 18px 0 #ffc64d,-12px 14px 0 #ffe27a}
+@keyframes sunPulse{to{transform:translate(-50%,-50%) scale(1.06)}}
+@keyframes sunHalo{to{transform:rotate(360deg)}}
+
+.orbit{
+  position:absolute;left:50%;top:50%;border:1px solid rgba(115,187,255,.18);
+  border-radius:50%;transform:translate(-50%,-50%);animation:orbitSpin linear infinite;
+  transform-origin:center;
+}
+.orbit:after{content:"";position:absolute;inset:-1px;border-radius:50%;background:conic-gradient(from 10deg,transparent 0 68%,rgba(99,208,255,.38) 74%,transparent 83%);-webkit-mask:radial-gradient(transparent calc(100% - 1px),#000 calc(100% - 1px));mask:radial-gradient(transparent calc(100% - 1px),#000 calc(100% - 1px))}
+.orbit-1{width:14%;height:14%;animation-duration:3.2s}.orbit-2{width:21%;height:21%;animation-duration:4.8s}.orbit-3{width:29%;height:29%;animation-duration:6.5s}
+.orbit-4{width:37%;height:37%;animation-duration:8.2s}.orbit-5{width:48%;height:48%;animation-duration:11.5s}
+.orbit-6{width:59%;height:59%;animation-duration:14s}.orbit-7{width:69%;height:69%;animation-duration:17s}.orbit-8{width:79%;height:79%;animation-duration:20s}
+.orbit:nth-of-type(even){animation-direction:reverse}
+@keyframes orbitSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+.planet{
+  position:absolute;left:50%;top:-6px;width:clamp(9px,1.35vw,16px);height:clamp(9px,1.35vw,16px);
+  transform:translateX(-50%);border-radius:50%;box-shadow:0 0 10px currentColor;
+}
+.planet:after{content:attr(data-planet);position:absolute;left:50%;top:130%;transform:translateX(-50%);white-space:nowrap;color:#7e96b9;font-size:7px;letter-spacing:.08em;opacity:.75}
+.planet-mercury{background:#b7bcc8;color:#d9e1ed}.planet-venus{background:linear-gradient(135deg,#fff0a7,#c9773f);color:#f3b86d}
+.planet-earth{background:radial-gradient(circle at 32% 28%,#6ff3ff 0 14%,transparent 15%),linear-gradient(135deg,#42d9ff,#2c65ff 55%,#1643a1);color:#4ddfff}
+.planet-earth i{position:absolute;width:35%;height:22%;background:#43db9b;border-radius:70% 20%;top:28%;left:25%;transform:rotate(-18deg)}
+.planet-mars{background:radial-gradient(circle at 30% 25%,#ffad72,#a73536 65%,#641f2a);color:#ff725d}
+.planet-jupiter{width:clamp(17px,2.5vw,28px);height:clamp(17px,2.5vw,28px);background:repeating-linear-gradient(to bottom,#e7bd8b 0 4px,#9a6046 4px 7px,#f1d3a5 7px 10px);color:#e7b981}
+.planet-jupiter i{position:absolute;width:35%;height:18%;right:12%;top:52%;background:#a65c4e;border-radius:50%}
+.planet-saturn{width:clamp(16px,2.35vw,27px);height:clamp(16px,2.35vw,27px);background:linear-gradient(135deg,#f6dc9d,#b67e52);color:#e6bf7a}
+.planet-saturn i{position:absolute;left:-45%;top:35%;width:190%;height:35%;border:1px solid rgba(246,216,148,.9);border-radius:50%;transform:rotate(-14deg);box-shadow:0 0 4px rgba(246,216,148,.4)}
+.planet-uranus{background:#79e4eb;color:#83e7ef}.planet-neptune{background:linear-gradient(135deg,#59aaff,#2636b9);color:#5f8dff}
+
+.solar-connector{position:absolute;left:50%;top:50%;width:50%;height:1px;transform-origin:left center;background:linear-gradient(90deg,rgba(82,203,255,.16),transparent);opacity:.55}
+.c1{transform:rotate(-8deg)}.c2{transform:rotate(37deg)}.c3{transform:rotate(82deg)}.c4{transform:rotate(126deg)}
+.c5{transform:rotate(172deg)}.c6{transform:rotate(217deg)}.c7{transform:rotate(262deg)}.c8{transform:rotate(307deg)}
+
+.solar-planet-labels{
+  position:absolute;bottom:clamp(70px,9vh,100px);left:50%;transform:translateX(-50%);
+  display:flex;justify-content:center;gap:10px;flex-wrap:wrap;width:min(92vw,850px);z-index:4;
+}
+.solar-planet-labels span{font-size:8px;color:#7186a7;letter-spacing:.08em;padding:4px 7px;border:1px solid rgba(111,168,225,.1);border-radius:99px;background:rgba(2,7,16,.22)}
+
+.solar-loader{
+  position:absolute;bottom:clamp(24px,4vh,40px);left:50%;transform:translateX(-50%);
+  width:min(90vw,620px);z-index:5;
+}
+.solar-loader-top,.solar-loader-bottom{display:flex;justify-content:space-between;gap:12px;color:#647b9f;font-size:8px;letter-spacing:.14em}
+.solar-loader-top strong{color:#7de3ff}
+.solar-progress{height:3px;margin:8px 0;background:rgba(103,151,208,.12);overflow:hidden;border-radius:99px}
+.solar-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#4c6dff,#57dfff,#c66bff);box-shadow:0 0 15px #57dfff;transition:width .08s linear}
+
+/* V20 control dock and smart overlays */
+.v20-dock{
+  position:fixed;right:18px;bottom:18px;z-index:1200;display:flex;gap:7px;align-items:center;
+  padding:7px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface-solid) 88%,transparent);
+  backdrop-filter:blur(18px);border-radius:18px;box-shadow:var(--shadow);
+}
+.v20-dock button{width:38px;height:38px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:12px;font-size:14px}
+.v20-dock button:hover{border-color:var(--line-strong);transform:translateY(-2px);box-shadow:var(--glow)}
+.v20-dock .v20-main{width:auto;padding:0 13px;font-size:10px;font-weight:800;letter-spacing:.08em}
+.v20-overlay{position:fixed;inset:0;z-index:1300;display:grid;place-items:center;padding:18px;background:rgba(0,3,10,.72);backdrop-filter:blur(12px)}
+.v20-panel{width:min(94vw,720px);max-height:min(88vh,780px);overflow:auto;border:1px solid var(--line-strong);background:var(--surface-solid);border-radius:24px;box-shadow:0 35px 100px rgba(0,0,0,.5);padding:22px}
+.v20-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+.v20-panel h3{margin:3px 0 0;font-size:24px}.v20-close{border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:11px;width:36px;height:36px}
+.v20-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
+.v20-stat{padding:15px;border:1px solid var(--line);background:var(--surface-2);border-radius:16px}
+.v20-stat span{display:block;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.12em}.v20-stat strong{display:block;margin-top:6px;font-size:19px}
+.v20-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.v20-actions button{border:1px solid var(--line);background:var(--surface-2);color:var(--ink);padding:10px 13px;border-radius:12px;font-size:11px}
+.v20-actions button:hover{border-color:var(--line-strong)}
+.v20-calc{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
+.v20-calc input{grid-column:1/-1;width:100%;height:50px;border:1px solid var(--line);background:var(--bg-2);color:var(--ink);border-radius:13px;padding:0 14px;font-size:21px;text-align:right}
+.v20-calc button{height:45px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:12px}
+.v20-activity{display:grid;gap:7px;margin-top:14px}.v20-activity-item{padding:10px 12px;border:1px solid var(--line);border-radius:12px;font-size:10px;color:var(--muted)}.v20-activity-item strong{color:var(--ink);margin-right:7px}
+
+/* Responsive hardening. */
+.page-section,.surface-card,.metric-card,.hero-panel,.analytics-grid,.backup-grid,.profile-grid,.two-col,.modal-form-grid{min-width:0}
+.inventory-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+img{max-width:100%}
+button,.nav-item,.quick-card,.inventory-card{touch-action:manipulation}
+@media (max-width:920px){
+  .app-shell{grid-template-columns:1fr!important}
+  .desktop-nav{display:none!important}
+  .mobile-menu-btn{display:flex!important}
+  .main-content{padding:18px!important}
+  .v20-dock{right:12px;bottom:12px}
+}
+@media (max-width:720px){
+  .solar-system{width:min(88vw,520px);height:min(88vw,520px)}
+  .solar-title{top:20px}.solar-title h1{font-size:34px}.solar-title p{font-size:9px}
+  .solar-planet-labels{display:none}
+  .solar-loader{bottom:20px}
+  .solar-loader-bottom span:nth-child(2){display:none}
+  .v20-dock{left:10px;right:10px;justify-content:space-between;border-radius:15px}
+  .v20-dock button{width:36px;height:36px}
+  .v20-dock .v20-main{padding:0 9px}
+  .v20-grid{grid-template-columns:1fr}
+  .v20-panel{padding:16px;border-radius:20px}
+  .v20-calc{gap:6px}
+}
+@media (max-width:430px){
+  .solar-system{width:92vw;height:92vw}
+  .solar-kicker{font-size:7px;letter-spacing:.16em}
+  .solar-title h1{font-size:29px}
+  .solar-status{font-size:8px}
+  .solar-loader-top,.solar-loader-bottom{font-size:7px}
+  .solar-loader-bottom span:last-child{display:none}
+  .v20-dock button:nth-child(5){display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .v20-solar-splash *, .v20-solar-splash *::before,.v20-solar-splash *::after{animation-duration:.001ms!important;animation-iteration-count:1!important}
+}
+@media print{
+  .v20-dock,.v20-overlay,.v20-solar-splash{display:none!important}
+}

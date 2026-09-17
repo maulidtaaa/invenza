@@ -1,0 +1,95 @@
+/* INVENZA V25. Theme-safe search + adaptive workspace. */
+:root{
+  --v25-search-bg: color-mix(in srgb,var(--surface-solid) 92%,var(--bg) 8%);
+  --v25-search-hover: color-mix(in srgb,var(--surface-2) 88%,var(--bg) 12%);
+  --v25-search-focus: color-mix(in srgb,var(--surface-solid) 96%,var(--cyan) 4%);
+  --v25-search-text: var(--ink);
+  --v25-search-placeholder: var(--muted);
+  --v25-search-icon: var(--cyan);
+}
+
+.toolbar-card .toolbar-search input,
+#inventorySearch,
+#globalSearch,
+#commandInput{
+  color:var(--v25-search-text) !important;
+  -webkit-text-fill-color:var(--v25-search-text) !important;
+  background:var(--v25-search-bg) !important;
+  border-color:var(--line-strong) !important;
+  caret-color:var(--cyan);
+  color-scheme:dark;
+  transition:background .25s ease,border-color .25s ease,box-shadow .25s ease,color .25s ease;
+}
+.toolbar-card .toolbar-search input::placeholder,
+#inventorySearch::placeholder,
+#globalSearch::placeholder,
+#commandInput::placeholder{color:var(--v25-search-placeholder)!important;opacity:1}
+.toolbar-card .toolbar-search input:hover,
+#inventorySearch:hover,#globalSearch:hover,#commandInput:hover{background:var(--v25-search-hover)!important;border-color:var(--line-strong)!important}
+.toolbar-card .toolbar-search input:focus,
+#inventorySearch:focus,#globalSearch:focus,#commandInput:focus{
+  background:var(--v25-search-focus)!important;
+  border-color:var(--cyan)!important;
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--cyan) 14%,transparent),0 0 28px color-mix(in srgb,var(--cyan) 10%,transparent);
+}
+.toolbar-search>span{color:var(--v25-search-icon)!important}
+body[data-theme="day"] .toolbar-card .toolbar-search input,
+body[data-theme="day"] #inventorySearch,
+body[data-theme="day"] #globalSearch,
+body[data-theme="day"] #commandInput{color-scheme:light}
+body[data-theme="day"] .toolbar-card .toolbar-search input,
+body[data-theme="day"] #inventorySearch,
+body[data-theme="day"] #globalSearch{box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}
+
+/* V25 search intelligence */
+.v25-search-shell{position:relative;min-width:0}
+.v25-search-clear{position:absolute;right:8px;top:7px;width:28px;height:28px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--muted);display:grid;place-items:center;font-weight:900;opacity:0;pointer-events:none;transition:.2s;z-index:2}
+.v25-search-shell.has-value .v25-search-clear{opacity:1;pointer-events:auto}
+.v25-search-clear:hover{color:var(--ink);border-color:var(--line-strong);background:var(--surface-2)}
+.v25-search-hint{display:flex;flex-wrap:wrap;gap:6px;margin:8px 2px 0}
+.v25-search-chip{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:999px;padding:5px 8px;font-size:9px;cursor:pointer;transition:.2s}
+.v25-search-chip:hover{color:var(--ink);border-color:var(--cyan);transform:translateY(-1px)}
+.v25-result-pulse{animation:v25ResultPulse .32s ease}
+@keyframes v25ResultPulse{0%{opacity:.65;transform:translateY(4px)}100%{opacity:1;transform:none}}
+
+/* V25 command orb */
+.v25-orb{position:fixed;right:18px;bottom:18px;width:58px;height:58px;border-radius:50%;border:1px solid color-mix(in srgb,var(--cyan) 45%,var(--line));background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--cyan) 30%,var(--surface-solid)),var(--surface-solid) 58%);color:var(--ink);z-index:180;box-shadow:0 0 0 6px color-mix(in srgb,var(--cyan) 5%,transparent),0 0 35px color-mix(in srgb,var(--cyan) 22%,transparent),var(--shadow);font-size:11px;font-weight:1000;letter-spacing:.08em}
+.v25-orb::before,.v25-orb::after{content:"";position:absolute;inset:-7px;border:1px solid color-mix(in srgb,var(--cyan) 20%,transparent);border-radius:50%;animation:v25Orb 4s linear infinite}
+.v25-orb::after{inset:-14px;opacity:.45;animation-duration:7s;animation-direction:reverse}
+@keyframes v25Orb{to{transform:rotate(360deg)}}
+.v25-orb span{position:relative;z-index:2}
+.v25-orb-menu{position:fixed;right:18px;bottom:88px;width:min(340px,calc(100vw - 28px));padding:12px;border:1px solid var(--line-strong);border-radius:20px;background:color-mix(in srgb,var(--surface-solid) 94%,transparent);backdrop-filter:blur(20px);box-shadow:var(--shadow);z-index:179;transform:translateY(12px) scale(.96);opacity:0;pointer-events:none;transition:.22s}
+.v25-orb-menu.open{transform:none;opacity:1;pointer-events:auto}
+.v25-orb-menu h3{margin:0 0 4px;font-size:13px}.v25-orb-menu p{margin:0 0 10px;color:var(--muted);font-size:9px;line-height:1.5}
+.v25-orb-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.v25-orb-grid button{min-height:42px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font-size:10px;font-weight:900}.v25-orb-grid button:hover{border-color:var(--cyan);background:var(--surface-2)}
+
+/* Surprise panel */
+.v25-insight-panel{margin-top:14px;display:grid;grid-template-columns:1.3fr .7fr;gap:10px}
+.v25-insight-card{border:1px solid var(--line);border-radius:18px;padding:14px;background:linear-gradient(135deg,color-mix(in srgb,var(--surface) 95%,var(--cyan) 5%),var(--surface));box-shadow:var(--shadow)}
+.v25-insight-card h3{margin:3px 0 5px;font-size:13px}.v25-insight-card p{margin:0;color:var(--muted);font-size:10px;line-height:1.6}.v25-kicker{color:var(--cyan);font-size:8px;font-weight:1000;letter-spacing:.18em}.v25-meter{height:7px;background:var(--surface-2);border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-top:10px}.v25-meter span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));box-shadow:0 0 16px color-mix(in srgb,var(--cyan) 40%,transparent);transition:width .5s ease}
+.v25-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.v25-stat{border:1px solid var(--line);border-radius:13px;padding:10px;background:var(--surface)}.v25-stat strong{display:block;font-size:17px}.v25-stat span{display:block;color:var(--muted);font-size:8px;margin-top:2px}
+
+/* Solar V25 polish. Keeps the V20 orbital architecture and removes card-like splash treatment. */
+.v20-solar-splash{isolation:isolate}
+.v20-solar-splash .solar-nebula{filter:saturate(1.2) blur(.2px);opacity:.95;animation:v25Nebula 18s ease-in-out infinite alternate}
+.v20-solar-splash .solar-system{filter:drop-shadow(0 0 20px rgba(87,216,255,.08));transform:scale(1.02)}
+.v20-solar-splash .orbit{box-shadow:0 0 18px rgba(87,216,255,.04),inset 0 0 14px rgba(155,112,255,.025)}
+.v20-solar-splash .planet{transition:filter .3s ease;filter:saturate(1.18) brightness(1.05)}
+.v20-solar-splash .planet:hover{filter:saturate(1.5) brightness(1.3) drop-shadow(0 0 12px rgba(255,255,255,.4))}
+.v20-solar-splash .sun-core{filter:saturate(1.15) brightness(1.12);animation:v25Sun 2.8s ease-in-out infinite alternate}
+.v20-solar-splash .solar-title h1{text-shadow:0 0 28px rgba(87,216,255,.18),0 0 55px rgba(242,106,255,.08)}
+.v20-solar-splash .solar-progress span{background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet),var(--pink),var(--gold));background-size:220% 100%;animation:v25Progress 2.4s linear infinite}
+@keyframes v25Nebula{0%{transform:scale(1) rotate(0deg)}100%{transform:scale(1.08) rotate(5deg)}}
+@keyframes v25Sun{from{transform:scale(.98);filter:brightness(1.02) saturate(1.05)}to{transform:scale(1.04);filter:brightness(1.22) saturate(1.2)}}
+@keyframes v25Progress{to{background-position:220% 0}}
+
+@media(max-width:760px){
+ .v25-orb{right:12px;bottom:12px;width:52px;height:52px}
+ .v25-orb-menu{right:12px;bottom:74px}
+ .v25-insight-panel{grid-template-columns:1fr}
+}
+@media(max-width:430px){
+ .v25-search-hint{display:none}
+ .v25-orb-grid{grid-template-columns:1fr 1fr}
+}
+@media(prefers-reduced-motion:reduce){.v25-orb::before,.v25-orb::after,.v20-solar-splash .solar-nebula,.v20-solar-splash .sun-core,.v20-solar-splash .solar-progress span{animation:none!important}.v25-result-pulse{animation:none}}
